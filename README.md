@@ -15,3 +15,5 @@
 ## QT 
  * [QT downlaod url](https://download.qt.io/archive/qt/)
 
+## HbbTV
+ * [HbbTV FRM](http://www.francescpinyol.cat/hbbtv.html)
