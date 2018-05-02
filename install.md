@@ -14,3 +14,6 @@ sudo apt intall emacs
 
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d  
 * [spacemacs](http://spacemacs.org/)
+
+## JDK 8
+sudo apt-get install openjdk-8-jdk  
