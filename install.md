@@ -17,3 +17,14 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 ## JDK 8
 sudo apt-get install openjdk-8-jdk  
+
+## configured directory for incoming file does not exist
+You can get the path with  
+
+gsettings get org.blueman.transfer shared-path  
+
+and change it with (for instance)  
+
+gsettings set org.blueman.transfer shared-path '/home/toto'  
+
+* [参考](https://askubuntu.com/questions/837977/configured-directory-for-incoming-file-does-not-exist/901111)
