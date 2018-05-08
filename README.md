@@ -1,8 +1,8 @@
 # Bookmark
 
 ## codec
-* [leandromoreira ffmpeg-libav-tutorial](https://github.com/leandromoreira/ffmpeg-libav-tutorial.git)
-编译命令:
+* [leandromoreira ffmpeg-libav-tutorial](https://github.com/leandromoreira/ffmpeg-libav-tutorial.git)  
+编译命令:  
 gcc -o 0_hello_world 0_hello_world.c -I../ffmpeg/output/include -L../ffmpeg/output/lib -lavformat -lavcodec -lswscale -lswresample -lavutil -lz -lm -lpthread -ldl -llzma
 
 ## tutorial
