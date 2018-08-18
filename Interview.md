@@ -1,41 +1,42 @@
 c++常见面试题
 
+
 https://www.cnblogs.com/fangyukuan/archive/2010/09/18/1829871.html
 https://blog.csdn.net/morewindows/article/details/7392749
 
-1.new、delete、malloc、free关系
-delete会调用对象的析构函数,和new对应free只会释放内存，new调用构造函数。malloc与free是C++/C语言的标准库函数，new/delete是C++的运算符。它们都可用于申请动态内存和释放内存。对于非内部数据类型的对象而言，光用maloc/free无法满足动态对象的要求。对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数。由于malloc/free是库函数而不是运算符，不在编译器控制权限之内，不能够把执行构造函数和析构函数的任务强加于malloc/free。因此C++语言需要一个能完成动态内存分配和初始化工作的运算符new，以及一个能完成清理与释放内存工作的运算符delete。注意new/delete不是库函数。
+# 1、基本函数
+## 1.new、delete、malloc、free关系
+new调用构造函数，delete会调用对象的析构函数,new和free只会释放内存。
+new/delete是C++的运算符，malloc与free是C++/C语言的标准库函数。
+它们都可用于申请动态内存和释放内存。对于非内部数据类型的对象而言，光用maloc/free无法满足动态对象的要求。对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数。由于malloc/free是库函数而不是运算符，不在编译器控制权限之内，不能够把执行构造函数和析构函数的任务强加于malloc/free。因此C++语言需要一个能完成动态内存分配和初始化工作的运算符new，以及一个能完成清理与释放内存工作的运算符delete。注意new/delete不是库函数。
 
-2.delete与 delete []区别
-delete只会调用一次析构函数，而delete[]会调用每一个成员的析构函数。在More Effective C++中有更为详细的解释：“当delete操作符用于数组时，它为每个数组元素调用析构函数，然后调用operator delete来释放内存。”delete与new配套，delete []与new []配套
-
-MemTest *mTest1=new MemTest[10];
-
-MemTest *mTest2=new MemTest;
-
-Int *pInt1=new int [10];
-
-Int *pInt2=new int;
-
-delete[]pInt1; //-1-
-
-delete[]pInt2; //-2-
-
-delete[]mTest1;//-3-
-
-delete[]mTest2;//-4-
+## 2.delete与 delete []区别
+<font size=4>
+delete只会调用一次析构函数，而delete[]会调用每一个成员的析构函数。在More Effective C++中有更为详细的解释：“当delete操作符用于数组时，它为每个数组元素调用析构函数，然后调用operator delete来释放内存。”
+delete与new配套，delete []与new []配套
+<font>
+MemTest *mTest1=new MemTest[10];  
+MemTest *mTest2=new MemTest;  
+Int \*pInt1=new int[10];  
+Int \*pInt2=new int;  
+delete[]pInt1; //-1-  
+delete[]pInt2; //-2-  
+delete[]mTest1;//-3-  
+delete[]mTest2;//-4-  
 
 在-4-处报错。
 
-这就说明：对于内建简单数据类型，delete和delete[]功能是相同的。对于自定义的复杂数据类型，delete和delete[]不能互用。delete[]删除一个数组，delete删除一个指针。简单来说，用new分配的内存用delete删除；用new[]分配的内存用delete[]删除。delete[]会调用数组元素的析构函数。内部数据类型没有析构函数，所以问题不大。如果你在用delete时没用括号，delete就会认为指向的是单个对象，否则，它就会认为指向的是一个数组。
+这就说明：对于内建简单数据类型，delete和delete[]功能是相同的(-1-与-2-)。
+对于自定义的复杂数据类型，delete和delete[]不能互用。delete[]删除一个数组，delete删除一个指针。简单来说，用new分配的内存用delete删除；用new[]分配的内存用delete[]删除。delete[]会调用数组元素的析构函数。内部数据类型没有析构函数，所以问题不大。如果你在用delete时没用括号，delete就会认为指向的是单个对象，否则，它就会认为指向的是一个数组。
 
-3.C++有哪些性质（面向对象特点）
+# C++基本概念
+## 1.C++有哪些性质（面向对象特点）
 封装，继承和多态。
 
-4.子类析构时要调用父类的析构函数吗？
+## 2.子类析构时要调用父类的析构函数吗？  
 析构函数调用的次序是先派生类的析构后基类的析构，也就是说在基类的的析构调用的时候,派生类的信息已经全部销毁了。定义一个对象时先调用基类的构造函数、然后调用派生类的构造函数；析构的时候恰好相反：先调用派生类的析构函数、然后调用基类的析构函数。
 
-5.多态，虚函数，纯虚函数
+## 3.多态，虚函数，纯虚函数
 多态：是对于不同对象接收相同消息时产生不同的动作。C++的多态性具体体现在运行和编译两个方面：在程序运行时的多态性通过继承和虚函数来体现；
 
 在程序编译时多态性体现在函数和运算符的重载上；
@@ -48,25 +49,16 @@ delete[]mTest2;//-4-
 
 抽象类中不仅包括纯虚函数，也可包括虚函数。抽象类必须用作派生其他类的基类，而不能用于直接创建对象实例。但仍可使用指向抽象类的指针支持运行时多态性。
 
-6.求下面函数的返回值（微软）
-int func(x) 
+# 编程题目
 
-{ 
-
-int countx = 0; 
-
-while(x) 
-
-{ 
-
-countx ++; 
-
-x = x&(x-1); 
-
-} 
-
-return countx; 
-
+## 1.求下面函数的返回值（微软）
+int func(x) {  
+  int countx = 0;  
+  while(x){   
+    countx ++;  
+    x = x&(x-1);   
+  }   
+  return countx;  
 } 
 
 假定x = 9999。 答案：8
@@ -87,34 +79,22 @@ return countx;
 如果既要利用引用提高程序的效率，又要保护传递给函数的数据不在函数中被改变，就应使用常引用。常引用声明方式：const 类型标识符 &引用名=目标变量名；
 
 例1
-
-int a ;
-
-const int &ra=a;
-
-ra=1; //错误
-
-a=1; //正确
-
+int a ;  
+const int &ra=a;  
+ra=1; //错误  
+a=1; //正确  
 例2
+string foo( );  
+void bar(string & s);  
 
-string foo( );
-
-void bar(string & s);
-
-那么下面的表达式将是非法的：
-
-bar(foo( ));
-
-bar("hello world");
+那么下面的表达式将是非法的：  
+bar(foo( ));  
+bar("hello world");  
 
 原因在于foo( )和"hello world"串都会产生一个临时对象，而在C++中，这些临时对象都是const类型的。因此上面的表达式就是试图将一个const类型的对象转换为非const类型，这是非法的。引用型参数应该在能被定义为const的情况下，尽量定义为const 。
 
 10.将“引用”作为函数返回值类型的格式、好处和需要遵守的规则?
-
-
 格式：类型标识符 &函数名（形参列表及类型说明）{ //函数体 }
-
 好处：在内存中不产生被返回值的副本；（注意：正是因为这点原因，所以返回一个局部变量的引用是不可取的。因为随着该局部变量生存期的结束，相应的引用也会失效，产生runtime error! 
 
 注意事项：
