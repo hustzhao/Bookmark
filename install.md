@@ -42,7 +42,7 @@ sudo apt-get install libapache2-mod-php
 sudo /etc/init.d/apache2 restart
 //测试php，借用W3School上的首个程序
 
-...
+``` 
  <!DOCTYPE html>
  <html>
  <body>
@@ -53,7 +53,7 @@ sudo /etc/init.d/apache2 restart
 
  </body>
  </html>
-...
+```
 
 保存成test.php，复制进/var/www/html目录下
 
