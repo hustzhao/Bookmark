@@ -60,6 +60,6 @@ sudo /etc/init.d/apache2 restart
 
 ## apache2 更改根目录方法
 
-vim /etc/apache2/apache2.conf，把文件里面的/var/www改成你的目标地址。
-vim /etc/apache2/sites-enabled/000-default.conf，把文件里面的/var/www改成你的目标地址。
+vim /etc/apache2/apache2.conf，把文件里面的/var/www改成你的目标地址。  
+vim /etc/apache2/sites-enabled/000-default.conf，把文件里面的/var/www改成你的目标地址。  
 service apache2 restart
