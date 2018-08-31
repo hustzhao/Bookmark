@@ -31,16 +31,16 @@ gsettings set org.blueman.transfer shared-path '/home/toto'
 
 
 ## 安装apache2
-sudo apt install apache2
-//测试是否安装成功
-浏览器地址栏输入“localhost”
-//安装最新版php命令
-sudo apt install php
-//配置apache2与php命令
-sudo apt-get install libapache2-mod-php
-//重启apache2命令
-sudo /etc/init.d/apache2 restart
-//测试php，借用W3School上的首个程序
+sudo apt install apache2  
+//测试是否安装成功  
+浏览器地址栏输入“localhost”  
+//安装最新版php命令  
+sudo apt install php  
+//配置apache2与php命令  
+sudo apt-get install libapache2-mod-php  
+//重启apache2命令  
+sudo /etc/init.d/apache2 restart  
+//测试php，借用W3School上的首个程序  
 
 ``` 
  <!DOCTYPE html>
@@ -55,9 +55,8 @@ sudo /etc/init.d/apache2 restart
  </html>
 ```
 
-保存成test.php，复制进/var/www/html目录下
-
-浏览器地址栏输入localhost/test.php
+保存成test.php，复制进/var/www/html目录下  
+浏览器地址栏输入localhost/test.php  
 
 ## apache2 更改根目录方法
 
